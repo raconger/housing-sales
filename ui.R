@@ -19,7 +19,11 @@ shinyUI(pageWithSidebar(
                                  #                                 h4('End date'),
                                  #                                 verbatimTextOutput("enddate")
                         ),
-                        tabPanel("Dollars per square foot over time", plotOutput('timePlot')),
+                        tabPanel("Dollars per square foot over time", 
+                                 plotOutput('timePlot')),
+                        tabPanel("Boxplots",
+                                 plotOutput('yboxplot'),
+                                 plotOutput('boxplot')),
                         tabPanel("Multi-scatter plot", plotOutput('multiScatter')),
                         tabPanel("Data summary", 
                                  verbatimTextOutput("summary")

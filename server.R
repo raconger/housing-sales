@@ -1,9 +1,20 @@
 library(shiny)
 library(zoo)
 
+# The CSV file came from a query at the Douglas County, NV Assessor's office
+# URL: http://assessor-search.douglasnv.us:1401/cgi-bin/asw300 use the 'Excel Download' button
+# Search terms, 
+#         district 430, 
+#        parcel number: 131800000000:131999999999
+#        date rage: 0101200:05172015
+
+
 data <- read.csv("data/sales_data.csv")
+# Date formate is an 8 digit numeric that needs to be coverted to a date.
 data$'Date' <- as.Date(as.character(data$'Date'), "%Y%m%d")
+# Create a data frame of the three parameters we care about (Sale date, square footage & sale price)
 dfr <- data.frame(data$'Date', data$Buildings.Sq..Ft., data$'Adjusted.Sale.Price')
+# Change all zero values to NA and then remove them from the data frame.
 dfr[dfr == 0] <- NA
 newdfr <- na.omit(dfr)
 

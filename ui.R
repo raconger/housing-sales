@@ -26,8 +26,8 @@ shinyUI(pageWithSidebar(
                                  plotOutput('boxplot')),
                         tabPanel("Multi-scatter plot", plotOutput('multiScatter')),
                         tabPanel("Data summary", 
-                                 verbatimTextOutput("summary")
-#                                 tableOutput('table'))
+                                 verbatimTextOutput("summary"),
+                                 tableOutput('table')
                         )
                         
                 )

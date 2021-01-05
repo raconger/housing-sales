@@ -1,0 +1,73 @@
+---
+title: "Untitled"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## GitHub Documents
+
+This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+
+## Including Code
+
+You can include R code in the document as follows:
+
+```{r}
+setwd("C:/Users/CONGERR/OneDrive - Aspen Technology, Inc/projects/De Beers")
+data <- read.csv(file="TBA_motorseized.csv",head=TRUE,sep=",")
+names(data)
+```
+
+## Coloring by Normal/Abnormal
+
+
+
+This is a simple and embedded scatterplot showing Current versus Flow. The _Included.Normal_ field is added for coloring.
+
+```{r pressure, echo=FALSE}
+# using subset function 
+as.data.frame(data)
+newdata <- subset(data, Rule.Result != "Offline")
+faildata <- subset(newdata, Included.Failure == "Checked")
+gooddata <- subset(newdata, Included.Failure == "Unchecked")
+plot(gooddata$TBAMC7201.Current.Current,gooddata$TBAFT0001.Flow.Flow, col="blue", pch=20)
+points(faildata$TBAMC7201.Current.Current,faildata$TBAFT0001.Flow.Flow, col="red", pch=24)
+
+```
+
+
+Since this functionality is easy to create, I'm going to do the same thing with a scatterplot matrix
+
+```{r pressure, echo=FALSE}
+
+cols <- ifelse(newdata$Included.Failure=="Checked","red","blue")
+pchs <- ifelse(newdata$Included.Failure=="Checked",24,20)
+pairs(newdata[c(7,36,37,38,55)], col=cols, pch=pchs, lower.panel=NULL)
+
+```
+```{r pressure, echo=FALSE}
+cols <- ifelse(newdata$Included.Failure=="Checked","red","blue")
+pchs <- ifelse(newdata$Included.Failure=="Checked",24,20)
+plot(newdata$TBAMC7201.Current.Current,newdata$TBATT3802A.Temperature.Temperature, col=cols, pch=pchs)
+
+```
+
+
+```{r pressure, echo=FALSE}
+
+cols <- ifelse(newdata$Included.Failure=="Checked","red","blue")
+pchs <- ifelse(newdata$Included.Failure=="Checked",24,20)
+pairs(newdata[c(7,50:55)], col=cols, pch=pchs, lower.panel=NULL)
+
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r pressure, echo=FALSE}
+
+cols <- ifelse(newdata$Included.Failure=="Checked","red","blue")
+pchs <- ifelse(newdata$Included.Failure=="Checked",24,20)
+pairs(newdata[c(51:58)], col=cols, pch=pchs, lower.panel=NULL)
+```

@@ -1,0 +1,3 @@
+"0","cols <- ifelse(newdata$Included.Failure==""Checked"",""red"",""blue"")"
+"0","pchs <- ifelse(newdata$Included.Failure==""Checked"",24,20)"
+"0","plot(newdata$TBAMC7201.Current.Current,newdata$TBATT3802A.Temperature.Temperature, col=cols, pch=pchs)"

@@ -1,0 +1,4 @@
+"0","newdata <- subset(data, Rule.Result != ""Offline"")"
+"0","faildata <- subset(newdata, Included.Failure == ""Checked"")"
+"0","gooddata <- subset(newdata, Included.Failure == ""Unchecked"")"
+"0","plot(gooddata$TBAMC7201.Current.Current,gooddata$TBAFT0001.Flow.Flow, col=""blue"", pch=20)"
